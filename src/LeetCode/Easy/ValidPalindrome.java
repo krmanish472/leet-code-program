@@ -23,7 +23,7 @@ public class ValidPalindrome {
         }
     }
 
-    static boolean isPalindrome(String str) {
+    private static boolean isPalindrome(String str) {
         int leftPtr = 0;
         int rightPtr = str.length() - 1;
 
@@ -37,6 +37,7 @@ public class ValidPalindrome {
                 rightPtr--;
             }
 
+            // if at any point char at opp index is not equal, not a palindrome
             if (Character.toLowerCase(str.charAt(leftPtr)) != Character.toLowerCase(str.charAt(rightPtr))) {
                 return false;
             }

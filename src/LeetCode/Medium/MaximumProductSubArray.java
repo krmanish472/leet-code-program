@@ -16,29 +16,31 @@ package LeetCode.Medium;
 
 public class MaximumProductSubArray {
     public static void main(String[] args) {
-        int[] nums = {2, 3, -2, 4};
+        int[] nums = {2, 3, -2, 5, 6, -1, 4};
 
-        System.out.println(maxProductSubArray(nums));
-        System.out.println(maxProductSubArray(new int[]{-2, 0, -1}));
+        int maxProduct = maxProductSubArray(nums);
+        System.out.println(maxProduct);
     }
 
-    public static int maxProductSubArray(int[] arr) {
-        int maxProduct = arr[0];
-        int minProduct = arr[0];
-        int result = arr[0];
+    public static int maxProductSubArray(int[] nums) {
+        int n = nums.length;
 
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < 0) { // if negative is encountered, swap min-max product
-                int temp = maxProduct;
-                maxProduct = minProduct;
-                minProduct = temp;
-            }
+        int leftProduct = 1;
+        int rightProduct = 1;
 
-            maxProduct = Math.max(arr[i], maxProduct * arr[i]);
-            minProduct = Math.min(arr[i], minProduct * arr[i]);
+        int maxProduct = nums[0]; // best case -> if only 1 el, max is the same element
 
-            result = Math.max(result, maxProduct);
+        for (int i = 0; i < nums.length; i++) {
+            // if 0 is encountered, make 1 to discard left/right elements from product and start fresh
+            leftProduct = leftProduct == 0 ? 1 : leftProduct;
+            rightProduct = rightProduct == 0 ? 1 : rightProduct;
+
+            leftProduct *= nums[i]; // start product from 0, 1, 2, ...
+            rightProduct *= nums[n - 1 - i]; // start product from 6, 5, 4
+
+            maxProduct = Math.max(maxProduct, Math.max(leftProduct, rightProduct));
         }
-        return result;
+
+        return maxProduct;
     }
 }

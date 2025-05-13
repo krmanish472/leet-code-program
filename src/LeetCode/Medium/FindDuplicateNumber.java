@@ -3,9 +3,19 @@ package LeetCode.Medium;
 
 /*
 * Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
-There is only one repeated number in nums, return this repeated number.
-You must solve the problem without modifying the array nums and using only constant extra space.
+* There is only one repeated number in nums, return this repeated number.
+* You must solve the problem without modifying the array nums and using only constant extra space.
+
+* Example 1:
+    Input: nums = [1,3,4,2,2]
+    Output: 2
+
+* Example 2:
     Input: nums = [3,1,3,4,2]
+    Output: 3
+
+* Example 3:
+    Input: nums = [3,3,3,3,3]
     Output: 3
 * */
 
@@ -49,4 +59,14 @@ public class FindDuplicateNumber {
 
         return -1;
     }
+
+    public static int findDuplicate_freqArray(int[] nums) {
+        int[] freq = new int[nums.length];
+        for(int i : nums){
+            freq[i]++;
+            if(freq[i] > 1) return i;
+        }
+        return 0;
+    }
+
 }

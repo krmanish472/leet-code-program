@@ -16,7 +16,7 @@ package LeetCode.Easy;
 //  Kadane's Algorithm
 public class MaxConsecutiveOnes {
     public static void main(String[] args) {
-        int[] nums = {1,1,0,1,1,1};
+        int[] nums = {1, 1, 0, 1, 1, 1};
         int countOfMostConsecutiveOnes = findMaxConsecutiveOnes(nums);
 
         System.out.println(countOfMostConsecutiveOnes);
@@ -30,7 +30,7 @@ public class MaxConsecutiveOnes {
             if (num == 1) {
                 currentCount++;
                 maxCount = Math.max(maxCount, currentCount);
-            } else {
+            } else { // to reset and start counting again when next 1 is encountered
                 currentCount = 0;
             }
         }

@@ -3,6 +3,7 @@ package LeetCode.Easy;
 /*
 * Given an array nums containing n distinct numbers in the range [0, n]
 * Return the only number in the range that is missing from the array.
+
 * Example 1:
     Input: nums = [3,0,1]
     Output: 2
@@ -21,8 +22,8 @@ public class MissingNumber {
     public static int missingNumber(int[] nums) {
         int xOr = 0;
 
-        // 0 ^ 1 ^ 2 ^3
-        for (int i = 0; i < nums.length; i++) {
+        // 0 ^ 1 ^ 2 ^ 3
+        for (int i = 0; i <= nums.length; i++) {
             xOr = xOr ^ i;
         }
 

@@ -35,11 +35,13 @@ public class ValidAnagram {
             charCount[str2.charAt(i) - 'a']--; // decrease freq of char in str2
         }
 
+        // after equal ++ and -- ... count should be 0
         for (int count : charCount) {
             if (count != 0) { // for anagram count will always be 0
                 return false;
             }
         }
+
         return true;
     }
 }

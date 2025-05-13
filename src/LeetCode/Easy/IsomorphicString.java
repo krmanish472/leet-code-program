@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class IsomorphicString {
     public static void main(String[] args) {
-        String s = "egg", t = "add";
+        String s = "egf", t = "add";
         if (isIsomorphic(s, t)) {
             System.out.println("Isomorphic");
         } else {
@@ -34,16 +34,29 @@ public class IsomorphicString {
     }
 
     public static boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
         HashMap<Character, Character> map = new HashMap<>();
 
         for (int i = 0; i < s.length(); i++) {
-            if (map.containsKey(s.charAt(i)) && !map.get(s.charAt(i)).equals(t.charAt(i))) {
-                return false;
-            }
-            if (map.containsValue(t.charAt(i)) && !map.containsKey(s.charAt(i))) {
-                return false;
+            char original = s.charAt(i);
+            char replacement = t.charAt(i);
+
+            // check for: egf => add; for g<->d, next when we put f, we can't map it to d
+            // as it's already mapped to key of g
+            if (!map.containsKey(original)) {
+                if (!map.containsValue(replacement)) {
+                    map.put(original, replacement);
+                } else {
+                    return false;
+                }
             } else {
-                map.put(s.charAt(i), t.charAt(i));
+                // check for: egg => adb; for g <-> d, next g should also be d
+                if (map.get(original) != replacement) {
+                    return false;
+                }
             }
         }
         return true;

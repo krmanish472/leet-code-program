@@ -34,6 +34,7 @@ public class FirstUniqueCharacterinString {
         System.out.println(res2);
     }
 
+    // basic way
     public static int firstUniqChar(String str) {
         for (int i = 0; i < str.length(); i++) {
             boolean unique = true;
@@ -52,6 +53,7 @@ public class FirstUniqueCharacterinString {
         return -1;
     }
 
+    // preferred way
     public static int firstUniqChar_withHashMap(String str) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < str.length(); i++) {
@@ -68,14 +70,14 @@ public class FirstUniqueCharacterinString {
     }
 
     public static int firstUniqChar_withCharArray(String str) {
-        int[] arr = new int[26];
+        int[] freqArr = new int[26];
 
         for (int i = 0; i < str.length(); i++) {
-            arr[str.charAt(i) - 'a']++;
+            freqArr[str.charAt(i) - 'a']++;
         }
 
         for (int i = 0; i < str.length(); i++) {
-            if (arr[str.charAt(i) - 'a'] == 1) {
+            if (freqArr[str.charAt(i) - 'a'] == 1) {
                 return i;
             }
         }

@@ -1,27 +1,31 @@
 package LeetCode.Medium;
 
-//Kadane's Algorithm
-/*
-* Given an integer array nums, find the subarray with the largest sum, and return its sum.
-*/
 
+/*
+ * Given an integer array nums, find the subarray with the largest sum, and return its sum.
+ */
+
+//  Kadane's Algorithm
 public class MaximumSubArray {
     public static void main(String[] args) {
-        int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
-        System.out.println("Maximum sub array sum is: " + maxSubArraySum(arr));
+        int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+
+        int maxSum = maxSubArraySum(arr);
+        System.out.println(maxSum);
     }
 
     public static int maxSubArraySum(int[] arr) {
-        int maxCurrent = arr[0];
-        int maxGlobal = arr[0];
+        int currentSum = arr[0];
+        int maxSum = arr[0];
 
         for (int i = 1; i < arr.length; i++) {
-            maxCurrent = Math.max(arr[i], maxCurrent + arr[i]);
-            if (maxCurrent > maxGlobal) {
-                maxGlobal = maxCurrent;
-            }
+            // check if currentSum at i is greater or element at i is greater
+            // if element at i is greater => we can ignore prev sum
+            // subarray will start at i
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
         }
 
-        return maxGlobal;
+        return maxSum;
     }
 }
